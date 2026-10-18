@@ -1,12 +1,23 @@
 extends State
 
-@onready var run_timer: Timer = $"../../Run timer"
-
-var last_input := ""
+const SPEED := 10.0
 
 func Enter():
-	run_timer.start()
+	print("Walkin")
+	playback.travel("Walk")
 
 func physics_update(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("Upward inp"):
+		state_machine.change_state(state_machine.get_node("Jump"))
+		
+	if Input.is_action_just_released("Left inp") or Input.is_action_just_released("Right inp"):
+		player.velocity.z = 0
+		state_machine.change_state(state_machine.get_node("Idle"))
+		return
+	
+	if Input.is_action_pressed("Left inp"):
+		player.velocity.z = -SPEED
+	elif Input.is_action_pressed("Right inp"):
+		player.velocity.z = SPEED
+		
  

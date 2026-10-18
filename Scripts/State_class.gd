@@ -2,7 +2,7 @@ class_name State
 extends Node
 
 var player: CharacterBody3D
-var state_machine
+var state_machine: Node
 var playback: AnimationNodeStateMachinePlayback
 
 func Enter():
