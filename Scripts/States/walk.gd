@@ -3,7 +3,6 @@ extends State
 const SPEED := 10.0
 
 func Enter():
-	print("Walkin")
 	playback.travel("Walk")
 
 func physics_update(delta: float) -> void:
@@ -19,5 +18,19 @@ func physics_update(delta: float) -> void:
 		player.velocity.z = -SPEED
 	elif Input.is_action_pressed("Right inp"):
 		player.velocity.z = SPEED
-		
+	
+	if Input.is_action_just_pressed("Light"):
+		player.velocity.z = 0
+		state_machine.change_state(state_machine.get_node("Light grounded attack"))
+		return
+	
+	if Input.is_action_just_pressed("Medium"):
+		player.velocity.z = 0
+		state_machine.change_state(state_machine.get_node("Medium grounded attack"))
+		return
+
+	if Input.is_action_just_pressed("Heavy"):
+		player.velocity.z = 0
+		state_machine.change_state(state_machine.get_node("Heavy grounded attack"))
+		return
  
