@@ -3,9 +3,8 @@ extends State
 const JUMP_STRENGHT := 50.0
 
 func Enter():
+	playback.travel("Mid air jump")
 	player.velocity.y += JUMP_STRENGHT
-	#dodaj jak już bedzie jump w anim tree
-	#playback.travel("Jump")
 
 func physics_update(_delta: float) -> void:
 	if player.is_on_floor():
